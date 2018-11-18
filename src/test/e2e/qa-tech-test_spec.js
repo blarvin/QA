@@ -20,7 +20,11 @@ describe('Clicking the first button we find', function () {
 
 describe('Making arrays from table data', function () {
   it('Makes THREE arrays of NINE integers each', function () {
-    cy.visit('/').get('button > :nth-child(1) > div').click(); // This isnt the Cy way, should 'Take Control of State' directly ... will try to refactor using cy.request()
+    cy.visit('/').get('body > div > div > section:nth-child(1) > div > div > button:nth-child(1)')
+      .click();
+    // This isnt the Cy way, should 'Take Control of State' directly
+    // will try to refactor using cy.request()
+    // already tested this UI!
 
     const firstArray = []; // Grrrr, this also isnt really the Cy way...
     const secondArray = []; // I tried some other things,

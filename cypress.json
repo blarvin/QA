@@ -1,5 +1,6 @@
 
 {
     "baseUrl": "http://localhost:3000",
-    "integrationFolder": "./src/test/e2e"
+    "integrationFolder": "./src/test/e2e",
+    "supportFile": false
 }

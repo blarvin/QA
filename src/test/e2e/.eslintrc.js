@@ -3,9 +3,6 @@ module.exports = {
     "cypress",
     "chai-friendly"
   ],
-  "extends": [
-    "plugin:cypress/recommended"
-  ],
   "env": {
         "cypress/globals": true
   },
@@ -15,5 +12,10 @@ module.exports = {
         "prefer-arrow-callback": 0,
         "semi": 0,
         "func-names": 0
-    }
+  },
+  "extends": [
+    "plugin:cypress/recommended",
+    "prettier",
+    "prettier/react"
+  ]
 }

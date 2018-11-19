@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha",
+    "test": "nyc mocha src/test/unit/**/*.js",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint src/* --fix"
   },
@@ -35,7 +35,8 @@
     "eslint-plugin-react": "^7.7.0",
     "kleur": "^3.0.0",
     "mocha": "*",
-    "prettier-eslint": "^8.8.2"
+    "prettier-eslint": "^8.8.2",
+    "nyc": "*"
   },
   "browserslist": [
     ">0.2%",

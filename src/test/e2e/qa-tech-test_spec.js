@@ -8,13 +8,11 @@ describe("Clicking the first button we find", function() {
   it("Activates a looooong scroll-down", function() {
     cy.visit("/");
 
-    cy.get(
-      "body > div > div > section:nth-child(1) > div > div > button:nth-child(1)"
-    ).click();
+    cy.get("[data-test-id=render-challenge]").click();
   });
 
   it("Should now show the Arrays Challenge", function() {
-    cy.get("body > div > div > section:nth-child(2)") // just trying to keep it "polymorphic", so it doesnt depend on the #id
+    cy.get("[data-test-id=arrays-table]") // just trying to keep it "polymorphic", so it doesnt depend on the #id
       .should("be.visible");
   });
 });

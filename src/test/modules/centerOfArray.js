@@ -1,4 +1,4 @@
-const centerOfArray = function(arr) {
+const centerOfArray = arr => {
   let theAnswer = null;
   for (let i = 1; i < arr.length - 1; i += 1) {
     if (leftSum(arr, i) === rightSum(arr, i)) {
@@ -10,7 +10,7 @@ const centerOfArray = function(arr) {
 
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-const leftSum = function(arry, index) {
+const leftSum = (arry, index) => {
   const result = [];
   for (let i = 0; i < index; i += 1) {
     result.push(arry[i]);
@@ -18,7 +18,7 @@ const leftSum = function(arry, index) {
   return result.reduce(reducer);
 };
 
-const rightSum = function(arry, index) {
+const rightSum = (arry, index) => {
   const result = [];
   for (let i = index + 1; i < arry.length; i += 1) {
     result.push(arry[i]);

@@ -55,7 +55,7 @@ describe("Solving and submitting the challenge", function() {
       cy.get("[data-test-id=submit-1]").type(centerOfArray(arse.firstArray));
       cy.get("[data-test-id=submit-2]").type(centerOfArray(arse.secondArray));
       cy.get("[data-test-id=submit-3]").type(centerOfArray(arse.thirdArray));
-      cy.get("[data-test-id=submit-4]").type(Cypress.env("DEV"));
+      // cy.get("[data-test-id=submit-4]").type(Cypress.env("DEV"));
     });
   });
 
@@ -67,7 +67,20 @@ describe("Solving and submitting the challenge", function() {
     it("Recieves confirmation of correct submission", function() {
       cy.get(
         '[style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 24px; box-sizing: border-box; overflow-y: hidden; border-top: none; border-bottom: none; max-height: 480px;"]'
-      ).should("contain", "your");
+      ).should("contain", "Congratulations");
     });
+  });
+});
+
+describe("An unhappy path :(", function() {
+  it("Displays 'SORRY' dialog text", function() {
+    cy.visit("/")
+      .get("[data-test-id=render-challenge]")
+      .click();
+    cy.get("[data-test-id=submit-1]").type("three");
+    cy.get("[data-test-id=submit-answers]").click();
+    cy.get(
+      '[style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 24px; box-sizing: border-box; overflow-y: hidden; border-top: none; border-bottom: none; max-height: 480px;"]'
+    ).should("contain", "quite");
   });
 });

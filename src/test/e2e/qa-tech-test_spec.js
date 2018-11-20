@@ -60,8 +60,14 @@ describe("Solving and submitting the challenge", function() {
   });
 
   describe("Submitting the answers", function() {
-    it("Clicks the 'submit' button", function() {});
+    it("Clicks the 'submit' button", function() {
+      cy.get("[data-test-id=submit-answers]").click();
+    });
 
-    it("Recieves confirmation of correct submission", function() {});
+    it("Recieves confirmation of correct submission", function() {
+      cy.get(
+        '[style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 24px; box-sizing: border-box; overflow-y: hidden; border-top: none; border-bottom: none; max-height: 480px;"]'
+      ).should("contain", "your");
+    });
   });
 });

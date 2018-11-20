@@ -123,7 +123,12 @@ export default class AnswerTable extends Component {
             but your chosen implementation.
           </p>
           <p>Good Luck!</p>
-          <RaisedButton label="Submit Answers" primary onClick={this.submitForm} />
+          <RaisedButton
+            data-test-id="submit-answers"
+            label="Submit Answers"
+            primary
+            onClick={this.submitForm}
+          />
           <DialogBox
             data-test-id="render-challenge"
             className="submit-button"

@@ -1,4 +1,4 @@
-const centerOfArray = arr => {
+const centerOfArray = (arr) => {
   let theAnswer = null;
   for (let i = 1; i < arr.length - 1; i += 1) {
     if (leftSum(arr, i) === rightSum(arr, i)) {

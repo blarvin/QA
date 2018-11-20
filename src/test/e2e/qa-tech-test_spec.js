@@ -12,8 +12,7 @@ describe("Clicking the first button we find", function() {
   });
 
   it("Should now show the Arrays Challenge", function() {
-    cy.get("[data-test-id=arrays-table]") // just trying to keep it "polymorphic", so it doesnt depend on the #id
-      .should("be.visible");
+    cy.get("[data-test-id=arrays-table]").should("be.visible");
   });
 });
 
@@ -26,17 +25,13 @@ describe("Making arrays from table data", function() {
 
   it("Makes THREE arrays of NINE integers each", function() {
     cy.visit("/")
-      .get(
-        "body > div > div > section:nth-child(1) > div > div > button:nth-child(1)"
-      )
+      .get("[data-test-id=render-challenge]")
       .click();
     // This isnt the Cy way, should 'Take Control of State' directly
     // will try to refactor using cy.request()
     // already tested this UI!
 
-    cy.get(
-      "body > div > div > section:nth-child(2) > div > div > div:nth-child(7) > div > div:nth-child(2) > table > tbody > tr:nth-child(1) td"
-    )
+    cy.get("[data-test-id=first-row] td")
       .each(function($element) {
         firstArray.push(parseInt($element.text(), 10));
       })
@@ -46,15 +41,11 @@ describe("Making arrays from table data", function() {
           .with.lengthOf(9);
       });
 
-    cy.get(
-      "body > div > div > section:nth-child(2) > div > div > div:nth-child(7) > div > div:nth-child(2) > table > tbody > tr:nth-child(2) td"
-    ).each(function($element) {
+    cy.get("[data-test-id=second-row] td").each(function($element) {
       secondArray.push(parseInt($element.text(), 10));
     });
 
-    cy.get(
-      "body > div > div > section:nth-child(2) > div > div > div:nth-child(7) > div > div:nth-child(2) > table > tbody > tr:nth-child(3) td"
-    ).each(function($element) {
+    cy.get("[data-test-id=third-row] td").each(function($element) {
       thirdArray.push(parseInt($element.text(), 10));
     });
   });

@@ -43,21 +43,21 @@ export default class CustomTable extends Component {
             showRowHover={this.state.showRowHover}
             stripedRows={this.state.stripedRows}
           >
-            <TableRow>
+            <TableRow data-test-id="first-row">
               {array1.map((item, index) => (
                 <TableRowColumn data-test-id={`array-item-1-${index}`} key={index}>
                   {item}
                 </TableRowColumn>
               ))}
             </TableRow>
-            <TableRow>
+            <TableRow data-test-id="second-row">
               {array2.map((item, index) => (
                 <TableRowColumn data-test-id={`array-item-2-${index}`} key={index}>
                   {item}
                 </TableRowColumn>
               ))}
             </TableRow>
-            <TableRow>
+            <TableRow data-test-id="third-row">
               {array3.map((item, index) => (
                 <TableRowColumn data-test-id={`array-item-3-${index}`} key={index}>
                   {item}

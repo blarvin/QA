@@ -10,6 +10,19 @@ describe("Checking out the UI", function() {
   });
 });
 
+describe("An unhappy path :(", function() {
+  it("Displays 'SORRY' dialog text", function() {
+    cy.visit("/")
+      .get("[data-test-id=render-challenge]")
+      .click();
+    cy.get("[data-test-id=submit-1]").type("three");
+    cy.get("[data-test-id=submit-answers]").click();
+    cy.get(
+      '[style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 24px; box-sizing: border-box; overflow-y: hidden; border-top: none; border-bottom: none; max-height: 480px;"]'
+    ).should("contain", "quite");
+  });
+});
+
 const centerOfArray = require("../modules/centerOfArray").centerOfArray;
 
 describe("Solving and submitting the challenge", function() {
@@ -69,18 +82,5 @@ describe("Solving and submitting the challenge", function() {
         '[style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 24px; box-sizing: border-box; overflow-y: hidden; border-top: none; border-bottom: none; max-height: 480px;"]'
       ).should("contain", "Congratulations");
     });
-  });
-});
-
-describe("An unhappy path :(", function() {
-  it("Displays 'SORRY' dialog text", function() {
-    cy.visit("/")
-      .get("[data-test-id=render-challenge]")
-      .click();
-    cy.get("[data-test-id=submit-1]").type("three");
-    cy.get("[data-test-id=submit-answers]").click();
-    cy.get(
-      '[style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 24px; box-sizing: border-box; overflow-y: hidden; border-top: none; border-bottom: none; max-height: 480px;"]'
-    ).should("contain", "quite");
   });
 });

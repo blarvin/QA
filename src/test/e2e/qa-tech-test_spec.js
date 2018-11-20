@@ -1,11 +1,5 @@
-describe("Page Presence Test", function() {
-  it("Visits the page on localhost", function() {
-    cy.visit("/");
-  });
-});
-
-describe("Clicking the first button we find", function() {
-  it("Activates a looooong scroll-down", function() {
+describe("Checking out the UI", function() {
+  it("Button activates a looooong scroll-down", function() {
     cy.visit("/");
 
     cy.get("[data-test-id=render-challenge]").click();
@@ -18,47 +12,56 @@ describe("Clicking the first button we find", function() {
 
 const centerOfArray = require("../modules/centerOfArray").centerOfArray;
 
-describe("Making arrays from table data", function() {
-  const firstArray = []; // Grrrr, this also isnt really the Cy way...
-  const secondArray = []; // I tried some other things,
-  const thirdArray = []; // but the td elements kept ending up as one string
+describe("Solving and submitting the challenge", function() {
+  const arse = {
+    firstArray: [],
+    secondArray: [],
+    thirdArray: []
+  };
+  describe("Making arrays", function() {
+    it("Makes THREE arrays of NINE integers each", function() {
+      cy.visit("/")
+        .get("[data-test-id=render-challenge]")
+        .click(); // this isnt exactly the Cypress way, I should 'take control of state' with cy.request
 
-  it("Makes THREE arrays of NINE integers each", function() {
-    cy.visit("/")
-      .get("[data-test-id=render-challenge]")
-      .click();
-    // This isnt the Cy way, should 'Take Control of State' directly
-    // will try to refactor using cy.request()
-    // already tested this UI!
-
-    cy.get("[data-test-id=first-row] td")
-      .each(function($element) {
-        firstArray.push(parseInt($element.text(), 10));
-      })
-      .should(function() {
-        expect(firstArray)
-          .to.be.an("Array")
-          .with.lengthOf(9);
+      cy.get("[data-test-id=first-row] td").each(function($element) {
+        arse.firstArray.push(parseInt($element.text(), 10));
       });
 
-    cy.get("[data-test-id=second-row] td").each(function($element) {
-      secondArray.push(parseInt($element.text(), 10));
+      cy.get("[data-test-id=second-row] td").each(function($element) {
+        arse.secondArray.push(parseInt($element.text(), 10));
+      });
+
+      cy.get("[data-test-id=third-row] td").each(function($element) {
+        arse.thirdArray.push(parseInt($element.text(), 10));
+      });
     });
 
-    cy.get("[data-test-id=third-row] td").each(function($element) {
-      thirdArray.push(parseInt($element.text(), 10));
+    it("All three arrays have NINE integers", function() {
+      for (const arr of Object.values(arse)) {
+        cy.log(arr);
+        expect(arr)
+          .to.be.an("Array")
+          .with.length(9);
+        for (const num of arr) {
+          expect(num).to.be.a("number");
+        }
+      }
     });
   });
 
-  it("Enters the answer into the form", function() {
-    cy.get("[data-test-id=submit-1]").type(centerOfArray(firstArray));
-    cy.get("[data-test-id=submit-2]").type(centerOfArray(secondArray));
-    cy.get("[data-test-id=submit-3]").type(centerOfArray(thirdArray));
-    cy.get("[data-test-id=submit-4]").type(Cypress.env("DEV"));
+  describe("Use module algorithm and enter answers", function() {
+    it("Enters the answer into the form", function() {
+      cy.get("[data-test-id=submit-1]").type(centerOfArray(arse.firstArray));
+      cy.get("[data-test-id=submit-2]").type(centerOfArray(arse.secondArray));
+      cy.get("[data-test-id=submit-3]").type(centerOfArray(arse.thirdArray));
+      cy.get("[data-test-id=submit-4]").type(Cypress.env("DEV"));
+    });
   });
-}); // wow, this seems fugly. hopefully I can refactor it.
-// atleast put the three together in one loop...
 
-// those selectors seem obnoxiosly long.. again, just tring to be 'polymorphic'
-// I dont know if that's a good way to do things. Just trying something.
-// It may LOOK better if I use xpath selectors... ?
+  describe("Submitting the answers", function() {
+    it("Clicks the 'submit' button", function() {});
+
+    it("Recieves confirmation of correct submission", function() {});
+  });
+});

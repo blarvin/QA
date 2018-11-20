@@ -7,9 +7,10 @@ const style = {
   textAlign: 'center',
 };
 
-
-const dialogText = complete => (complete ? 'Congratulations you have succeeded. Please submit your challenge ✅' :
-  'It looks like your answer wasn\'t quite right ❌');
+const dialogText = complete =>
+  (complete
+    ? 'Congratulations you have succeeded. Please submit your challenge ✅'
+    : "It looks like your answer wasn't quite right ❌");
 
 export default class DialogBox extends React.Component {
   constructor(props) {
@@ -17,13 +18,7 @@ export default class DialogBox extends React.Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label="Close"
-        primary
-        onClick={this.props.handleClose}
-      />,
-    ];
+    const actions = [<FlatButton label="Close" primary onClick={this.props.handleClose} />];
     return (
       <div>
         <Dialog
@@ -34,7 +29,6 @@ export default class DialogBox extends React.Component {
           open={this.props.open}
           onRequestClose={this.handleClose}
         >
-
           {dialogText(this.props.complete)}
         </Dialog>
       </div>
